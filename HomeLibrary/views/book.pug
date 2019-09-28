@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  h1(style='font-family: Calibri;') #{book.title}
+  h3(style='font-family: Calibri;') by #{book.author}
+  if book.submitter
+    h5(style='font-size:18px;font-family: Calibri;') Submitted by #{book.submitter}
+  if book.available
+    p Available
+  else
+    p Not available
+    p Borrowed by #{book.borrower} until #{book.duedate}
+  br
+  h4(style='font-size:20px;font-family: Calibri;') Description
+  p= book.description
+  hr
+  if user
+    if book.available
+      a.btn.btn-primary(href='#' data-toggle='modal' style='font-size:20px;font-family: Calibri;' data-target='#mymodal') Borrow
+      #mymodal.modal
+        .modal-dialog.modal-sm
+          .modal-content
+            .modal-header
+              button(type='button', class='close', data-dismiss='modal') x
+              h3(class='modal-title') Borrow this book
+            .modal-body
+            //h5(class='modal-body') Here you can add this book to your personal borrowed library!
+            // Insert Ability to add a book to a personal library
+            //p(class='modal.body')  
+            form(class='modal-body', method='POST', action='/books/borrow')
+              #form-group
+                label In how many days will you return it?
+                input.form-control(name='days', style='font-size:20px;', required, value='0', type='number', min='0', max='99')
+                br
+                input.btn.btn-primary.borrow(type='submit', style='font-size:20px;', value='I borrow it')
+    else if book.borrower=user.username
+      h4(style='font-size:20px;font-family: Calibri;') You borrowed this book. 
+      form( method='POST', action='/books/return', style='font-size:20px;font-family: Calibri;')
+        #form-group
+          input.btn.btn-primary.return(style='font-size:20px;font-family: Calibri;',type='submit', value='Return')
+    if book.borrower==null
+      br
+    if user.username ==book.submitter || user.username =='admin'
+      
+      br
+      a.btn.btn-default(style='font-size:20px;font-family: Calibri;',href='/books/edit/'+book._id) Edit 
+      |         
+      a.btn.btn-danger.delete-book-modal(href='#' style='font-size:20px;font-family: Calibri;' data-toggle='modal' data-target='#suremodal') Delete
+      #suremodal.modal
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button(type='button', class='close', style='font-size:20px;font-family: Calibri;', data-dismiss='modal') x
+              h3(style='font-size:20px;font-family: Calibri;' class='modal-title') Delete this book
+            .modal-body
+            //h5(class='modal-body') Here you can add this book to your personal borrowed library!
+            // Insert Ability to add a book to a personal library
+            //p(class='modal.body')  
+            form(method='POST', class='modal-body', action='/books/add', style='font-size:20px;font-family: Calibri;')
+              #form-group
+                label Are you sure?
+                //input.form-control(name='days', required, value='0', type='number', min='0', max='99')
+              br
+              input.btn.btn-primary.delete-book(type='submit',value='Yes', data-id=book._id)
+              input.btn.btn-secondary(type='submit',value='No', class='close', data-dismiss='modal')
+      //script(src='/bower_components/jquery/dist/jquery.min.js')
+      script(src='/js/borrow.js')  

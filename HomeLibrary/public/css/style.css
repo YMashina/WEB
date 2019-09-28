@@ -1,0 +1,21 @@
+.alert-error{
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-success_msg{
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.return{
+  width: 100px;
+  height: 40px;
+  font-size:20px;
+  text-align: center;
+  vertical-align: middle;
+}
+body{
+font-family: Corn;    
+}

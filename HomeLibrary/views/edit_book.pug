@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 #{title}
+  form(method='POST', style='font-size:20px;font-family: Calibri;' ,action='/books/edit/'+book._id)
+    #form-group
+      label Title:
+      input.form-control(name='title', type='text', value=book.title)
+    #form-group
+      label Author:
+      input.form-control(name='author', type='text', value=book.author)
+    #form-group
+      label Description:
+      textarea.form-control(name='description')= book.description
+    br
+    h5(style='font-size:20px;font-family: Calibri;') Is this book available? (Unckecked = unavailable)
+    input(name='availability_edit', style='font-size:20px;', type='checkbox', checked=true)
+    br
+    br
+    br
+    input.btn.btn-primary(type='submit',value='Submit', style='font-size:20px;font-family: Calibri;')

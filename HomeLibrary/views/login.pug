@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Login
+  form(method='POST', action='/users/login', style='font-size:20px;font-family: Calibri;')
+    #form-group
+      p(style='font-size:20px;font-family: Calibri;') Username:
+      input.form-control(name='username',type='text',style='font-size:20px;font-family: Calibri;')
+    #form-group
+      p(style='font-size:20px;font-family: Calibri;') Password:
+      input.form-control(name='password',type='password',style='font-size:20px;font-family: Calibri;')
+    br
+    input.btn.btn-primary(type='submit',value='Submit',style='font-size:20px;font-family: Calibri;')

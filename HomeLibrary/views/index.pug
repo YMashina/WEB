@@ -1,0 +1,80 @@
+extends layout
+
+block content
+  //- function load (){}
+  
+  p(id='store', style='display:none') #{books}
+  script(src='/js/sort.js')
+  script.
+      if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('../');
+    }
+  script.
+    var array = [];
+  each book, i in books
+    script.
+      array.push(`!{book})`);
+  script.
+      localStorage.setItem('array', array);
+      //console.log(localStorage.getItem('array'));
+  script(src='/bower_components/jquery/dist/jquery.js')  
+  script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+  script(src='/js/main.js')  
+  //script(src='../app.js')
+  script(src='/bower_components/jquery/dist/jquery.min.js')
+  .container
+    .row
+      #filter-panel.collapse.filter-panel(style='font-size:20px;font-family: Calibri;')
+        .panel.panel-default
+          .panel-body
+            form.form-inline(role='form', name='filterform', style='font-size:20px;font-family: Calibri;')
+              .form-group
+                p.filter-col(style='font-size:20px;display:inline;font-family: Calibri;', for='pref-perpage') Sort: 
+                |  
+                select#selection.form-control(style='font-size:20px;font-family: Calibri;')
+                  option(value='1') available first
+                  option(value='2') unavailable first
+                  option(value='3', ) date of return ↑
+                  option(value='4', ) date of return ↓
+                    // form group [rows]
+              //.form-group
+              //label.filter-col(style='margin-right:0;', for='pref-search') Search:
+              //input#pref-search.form-control.input-sm(type='text')
+              // form group [search]
+              //.form-group
+              // form group [order by]
+              | 
+              //.form-group
+              -
+                var bookss = books;
+              
+              button.btn.btn-default( style='font-size:20px;font-family: Calibri;',id='filterbutton', type='button',onclick="load(array)", href='sort')
+                span.glyphicon.glyphicon-record
+                |  Filter
+      button.btn.btn-primary(type='button', style='font-size:16px;font-family: Calibri;' , data-toggle='collapse', data-target='#filter-panel')
+        span.glyphicon.glyphicon-cog
+        |  Filter
+  h1 #{title}
+  
+  div(id='response')
+    #list
+      ul.list-group(class='mylist', id='filterlist')
+        
+        //- var array = [];
+        each book, i in books
+          //- array.push(book);
+          //- func(book);
+          li.list-group-item
+            //li.list-group-item #{book.title} by #{book.author}
+            a(href="/books/"+book._id)= book.title + ' by ' + book.author
+            //#{book.title} by #{book.author}
+        
+  //script.
+    //var bookss = #{books};
+    function loadd(){console.log(stringify(#{books}));}
+  
+  script(src='/bower_components/jquery/dist/jquery.js')
+  script(src='/bower_components/jquery/dist/jquery.min.js')
+  script(src='/bower_components/jquery/dist/jquery.slim.js')
+  //script(src='/bower_components/jquery/dist/core.js')
