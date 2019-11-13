@@ -1,0 +1,62 @@
+@import "color-settings.less";
+
+.top-menu {
+    // margin: 0 150px;
+    // margin-top: 2%;
+    position: absolute;
+    float: left; 
+    // width:400px;
+    background: @forms_color;  
+    opacity: 0.8;
+    border: solid 1px @border;
+    padding: 3px ; /* Поля вокруг текста */
+    // box-shadow: 
+    //   inset 1px 0 0 rgba(255,255,255,.1), 
+    //   inset -1px 0 0 rgba(255,255,255,.1), 
+    //   inset 150px 0 150px -150px rgba(255,255,255,.12), 
+    //   inset -150px 0 150px -150px rgba(255,255,255,.12);
+  }
+
+  .menu-main {
+    position: absolute;
+    top: -5px;
+    left: 1020px;
+    list-style: none; // no markers for list
+    padding: 0;
+    margin: 0;
+    text-align: right;
+  }
+
+
+  .menu-main li {
+    display: inline;
+    padding: 0;
+    list-style: none;
+    margin-right: -4px;
+  }
+  .menu-main a:before{
+    //  content: "#";
+    margin-right: 5px;
+  }
+
+  .menu-main a {
+    outline: none;
+    display: block;
+    padding: 10px 10px; 
+    font-weight: 600;
+
+    text-decoration: none;
+    // display: inline-block;
+    // padding: 15px 30px;
+    font-family: 'Comfortaa';
+    color: @main_font;
+    transition: .3s linear;
+    .button-style();
+  }
+
+  .menu-main a.current,
+  .menu-main a:hover {
+    background: @hover_form;
+    color: @header;
+  }
+  

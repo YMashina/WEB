@@ -1,0 +1,47 @@
+doctype html
+html
+    head
+        include header.pug
+        script(src="javascripts/membersHTML.js")
+    body
+        dialog(id="modal-window-add" class="member") 
+            form(method="dialog" id="modal-window-add-form")
+                h1 Новый участник
+                div.div-name
+                    p Имя
+                    input(type="text" name="name" required form="modal-window-add-form" value="Владимир")
+                div.div-surname
+                    p Фамилия
+                    input(type="text" name="surname" required form="modal-window-add-form" value="Путин")
+                div.div-money
+                    p Депозит
+                    input(type="number" name="money" required form="modal-window-add-form" value=1000000)
+                button#addMemberButton(onClick="addMember()" form="modal-window-add-form") Добавить участника
+        dialog(id="modal-window-change" class="member")
+            form(method="dialog" id="modal-window-change-form")
+                h1 Настроить участник
+                div.div-name
+                    p Имя
+                    input(type="text" name="name" required form="modal-window-change-form")
+                div.div-surname
+                    p Фамилия
+                    input(type="text" name="surname" required form="modal-window-change-form")
+                div.div-money
+                    p Депозит
+                    input(type="number" name="money" required form="modal-window-change-form")
+                button#saveButton(onClick="changeCurrentMember()") Сохранить изменения 
+                button#deleteButton(onClick="deleteСurrentMember()") Удалить
+        include menu.pug                        
+        div.buttons
+            a.add-btn(onClick="openModalWindowToAdd()") Добавить участника
+        table.table-pictures
+            tr
+                th Имя
+                th Фамилия
+                th Депозит
+            for member in members
+                tr(onClick=`getMemberFromServer(${member.id})` id=`member${member.id}`)
+                    td #{member.name}
+                    td #{member.surname}
+                    td #{member.money}            
+

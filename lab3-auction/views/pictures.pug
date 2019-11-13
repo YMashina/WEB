@@ -1,0 +1,95 @@
+doctype html
+html
+    head
+        include header.pug
+        script(src="javascripts/picturesHTML.js")
+    body
+        dialog(id="image-window")
+            div.box
+                div.box-inner
+                    img(src="/images/mono.jpg")
+                    div.text
+            button#closeImageButton(onClick="closeImage()") Закрыть
+        dialog(id="modal-window-add") 
+            form(method="dialog" id="modal-window-add-form")
+                h1(onClick="openSecretWindow()") Новая картина
+                div.div-title
+                    p Название
+                    input(type="text" name="title" required form="modal-window-add" value="Девятый вал")
+                div.div-author
+                    p Автор
+                    input(type="text" name="author" required form="modal-window-add" value="Айвозовский")
+                div.div-dateCreate
+                    p Год создания
+                    input(type="number" name="dateCreate" required form="modal-window-add" value=2012)
+                div.div-country
+                    p Страна происхождения
+                    input(type="text" name="country" required form="modal-window-add" value="Россия")
+                div.div-beginPrice
+                    p Начальная цена
+                    input(type="number" name="beginPrice" required form="modal-window-add" value=1000)
+                div.div-minStep
+                    p Минимальный шаг
+                    input(type="number" name="minStep" required form="modal-window-add" value=20)
+                div.div-maxStep
+                    p Максимальнй шаг
+                    input(type="number" name="maxStep" required form="modal-window-add" value=50)
+                div.div-srcref
+                    p Изображание
+                    input(type="text" name="srcref" form="modal-window-add" value="1.jpg")
+                div.div-description
+                    p Описание картины
+                    textarea(name="description" cols="20" rows="13" placeholder="Введите описание картины" id="pictureDescription") Класс!
+                button#addButton(onClick="addPicture()" form="modal-window-add-form") Добавить картину
+        dialog(id="modal-window-change")
+            form(method="dialog" id="modal-window-change-form")
+                h1(onClick="openSecretWindow()") Настроить картина
+                div.div-title
+                    p Название
+                    input(type="text" name="title" required form="modal-window-change")
+                div.div-author
+                    p Автор
+                    input(type="text" name="author" required form="modal-window-change")
+                div.div-dateCreate
+                    p Год создания
+                    input(type="number" name="dateCreate" required form="modal-window-change")
+                div.div-country
+                    p Страна происхождения
+                    input(type="text" name="country" required form="modal-window-change")
+                div.div-beginPrice
+                    p Начальная цена
+                    input(type="number" name="beginPrice" required form="modal-window-change")
+                div.div-minStep
+                    p Минимальный шаг
+                    input(type="number" name="minStep" required form="modal-window-change")
+                div.div-maxStep
+                    p Максимальнй шаг
+                    input(type="number" name="maxStep" required form="modal-window-change")
+                div.div-srcref
+                    p Изображание
+                    input(type="text" name="srcref" form="modal-window-change")
+                div.div-description
+                    p Описание картины
+                    textarea(name="description" cols="20" rows="13" placeholder="Введите описание картины" id="pictureDescription")
+                button#openImageButton(onClick="openImage()") Открыть изображение
+                button#saveButton(onClick="changeCurrentPicture()") Сохранить изменения 
+                button#deleteButton(onClick="deleteСurrentPicture()") Удалить
+        include menu.pug                   
+        div.buttons
+            a.add-btn(onClick="openModalWindowToAdd()" ) Добавить картину
+            //- a.del-btn(onClick="requestType('free')") Показать свободные
+            //- a.del-btn(onClick="requestType('unfree')") Показать взятые
+        table.table-pictures
+            tr
+                th Название
+                th Автор
+                th Год создания
+                th Страна происхождения
+                th Начальная цена
+            for picture in pictures
+                tr(onClick=`getPictureFromServer(${picture.id})` id=`picture${picture.id}`)
+                    td #{picture.title}
+                    td #{picture.author}
+                    td #{picture.dateCreate}
+                    td #{picture.country}
+                    td #{picture.beginPrice}                

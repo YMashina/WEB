@@ -1,0 +1,44 @@
+doctype html
+html
+    head
+        include header.pug
+        script(src="javascripts/auctionHTML-full.js")
+    body
+        include menu.pug
+        div#mainArea
+            div#auctionSettings(class="mainArea-div")
+                form(id="refresh-settings")
+                    h1 Настройки аукциона
+                    p Дата начала
+                    input(type="date" name="date" required form="refresh-settings" value=`${auction.settings.date}`)
+                    p Время начала
+                    input(type="time" name="time" required form="refresh-settings" value=`${auction.settings.time}`)
+                    p Значение таймаута
+                    input(type="number" name="timeout" required form="refresh-settings" value=`${auction.settings.timeout}`)
+                    p Размер интервала
+                    input(type="number" name="interval" required form="refresh-settings" value=`${auction.settings.interval}`)
+                    p Длительность паузы
+                    input(type="number" name="pause" required form="refresh-settings" value=`${auction.settings.pause}`)
+                button#save(onClick="saveAuctionSettings()") Сохранить
+                button#delete(onClick="deleteAuction()") Удалить
+            div#auctionMembers(class="mainArea-div")
+                h1 Участники
+                ol.rounded
+                    for member in activeMembers
+                        li 
+                            a(onClick=`deleteMemberFromAuction(${member.id})` id=`member${member.id}`) #{member.surname} #{member.name}
+                select#memberList Новый участник
+                    for member in allMembers
+                        option(value=`${member.id}`) #{member.surname} #{member.name}
+                button#addMemberToAuction(onClick="addMemberToAuction()") Добавить
+            div#auctionPictures(class="mainArea-div")
+                h1 Картины
+                ol.rounded
+                    for picture in activePictures
+                        li
+                            a(onClick=`deletePictureFromAuction(${picture.id})` id=`picture${picture.id}`) &quot;#{picture.title}&quot; #{picture.author}
+                select#pictureList Новая картина
+                    for picture in allPictures
+                        option(value=`${picture.id}`) #{picture.title} #{picture.author}                    
+                button#addPictureToAuction(onClick="addPictureToAuction()") Добавить
+                 

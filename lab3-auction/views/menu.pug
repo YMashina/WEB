@@ -1,0 +1,24 @@
+div.top-menu
+    ul.menu-main
+        case title 
+            when "Pictures"
+                li 
+                    a.current(href="/pictures") Картины
+                li
+                    a(href="/members") Участники
+                li 
+                    a(href="/auction") Аукцион
+            when "Members"
+                li 
+                    a(href="/pictures") Картины
+                li
+                    a.current(href="/members") Участники
+                li 
+                    a(href="/auction") Аукцион
+            when "Auction"
+                li 
+                    a(href="/pictures") Картины
+                li
+                    a(href="/members") Участники
+                li 
+                    a.current(href="/auction") Аукцион

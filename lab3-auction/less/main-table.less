@@ -1,0 +1,68 @@
+@import "color-settings.less";
+
+.table-pictures {
+    width:50%;   
+    position: absolute;
+    width: 50%;
+    top: 90px;
+    left: 90px;
+    width: 900px;
+    opacity: 0.8;
+    letter-spacing: 1px;
+    border: solid 1px @border;
+    text-align: center;
+    font-size: 18px;
+    color: @main_font; 
+    margin-top: 4%;
+    margin-right: 5px;
+    font-family: 'Comfortaa';
+}
+
+.table-pictures tr th:hover {
+    color: @main_font;
+}
+  
+.table-pictures th {
+    border-top: 1px solid @border;	
+    border-bottom: 1px solid @border; 
+    color: @main_font;
+    padding: 10px 10px;
+    position: relative;
+    text-align: center;
+    margin-left: 15%;
+}
+.table-pictures th:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 25%;
+    height: 25%;
+    width: 100%;
+}
+.table-pictures tr:nth-child(odd) {
+    background: @border;
+    opacity: 0.8;
+}
+.table-pictures th:first-child {
+    border-left: 1px solid @border;	
+    border-bottom:  1px solid @border;
+}
+.table-pictures th:last-child {
+    border-right: 1px solid @border;
+    border-bottom:  1px solid @border;
+}
+.table-pictures td {
+    border: 1px solid @border;
+    padding: 10px 10px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+.table-pictures tr:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.table-pictures tr:first-child:hover {
+    text-decoration: none;
+    cursor: default;
+}

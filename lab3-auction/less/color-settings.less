@@ -1,0 +1,97 @@
+@main_font: #200061;// #112D52;
+@header:white;
+@forms_color: rgb(192, 222, 241);
+@border: white;
+@hover_text: white;
+@hover_form: hsla(204, 62%, 42%, 0.76);
+@modal_form: #93bfdd;
+@modal_border: rgb(224, 236, 252);
+@shadow: #36538a;
+@input: darksalmon;
+@btn_text: rgb(16, 49, 71);
+@btn_border: #fdfeffe5;
+// #3EE88D;
+// moccasin;
+
+.outborder{
+  outline: 1px solid @btn_border; /* снаружи рамка */
+  outline-offset: 2px; 
+}
+
+.button-style {
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px 20px;
+  font-size: 18px;
+  color:@btn_text;
+  background-color: @forms_color;
+  border: 1px solid @modal_border;  
+  opacity: 0.8; 
+  transition: .4s linear;     
+}
+
+
+.button-modal(){
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+.button-hover {
+  .outborder();
+  opacity:.85;
+  cursor: pointer;
+  background: @hover_form;
+  color: @hover_text;
+}
+
+.button-modal-hover{
+  opacity:.85;
+  cursor: pointer;
+  background: @hover_form;
+  color: @hover_text;
+  .outborder();
+}
+
+.h1-style {
+    text-align: center;
+    margin-left: 20px;
+    font-size: 16pt;
+    color: @header;
+  }
+  
+.p-style {
+    font-family: 'Comfortaa', cursive;
+    font-weight: bold;
+    margin-top: 3px;
+    margin-bottom: 2px;
+    font-size: 13pt;
+    color: @main_font;
+  }
+  
+.input-style {
+  font-family: 'Comfortaa', cursive;
+  padding: 4px; 
+  font-size: 12pt;
+  border:1px solid @modal_border;
+  border-radius:2px;
+}
+
+.input-style-focus {
+  border:1px solid @modal_border;
+  // box-shadow: 0 0 3px @shadow;
+}
+
+
+.color-div-back {
+  background-color:@modal_form;
+}
+
+.color-input{
+  color: @input;
+  background-color:@forms_color;
+}
+
+.color-input-back {
+  background-color: @forms_color;
+}

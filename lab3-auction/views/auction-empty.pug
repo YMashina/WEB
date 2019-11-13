@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        include header.pug
+        script(src="javascripts/auctionHTML-empty.js")
+    body
+        include menu.pug                   
+        h1#main-h1 Аукцион ещё не создан. Хотите создать?
+        div.buttons
+            a.add-btn(onClick="openModalWindowToAdd()") Новый аукцион
+        dialog(id="modal-window-add" class="settings-modal")
+            form(method="dialog" id="new-settings")
+                h1 Настройки аукциона
+                div.div-date
+                    p Дата начала
+                    input(type="date" name="date" required form="new-settings" value="2018-12-12")
+                div.div-time
+                    p Время начала
+                    input(type="time" name="time" required form="new-settings" value="20:00")
+                div.div-timeout
+                    p Значение таймаута
+                    input(type="number" name="timeout" required form="new-settings" value="30")
+                div.div-interval
+                    p Размер интервала
+                    input(type="number" name="interval" required form="new-settings" value="20")
+                div.div-pause
+                    p Длительность паузы
+                    input(type="number" name="pause" required form="new-settings" value="10")
+                button#addButton(onClick="createAuction()" form="new-settings") Готово
